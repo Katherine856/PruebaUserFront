@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+
+.container {
+  border: 3px solid blue;
+  padding: 20px;
+  width: 50%;
+  border-radius: 15px;
+}
+
+.btn{
+  width: 50%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}

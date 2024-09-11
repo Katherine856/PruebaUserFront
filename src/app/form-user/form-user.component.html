@@ -1,0 +1,39 @@
+<div class="mt-4 mb-4">
+  <div class="container">
+    <h2>Ingresar la información del cliente</h2>
+    <form (ngSubmit)="onSearch()" [formGroup]="form" novalidate>
+      <div *ngIf="(form.controls['documentType'].invalid) && (form.controls['documentNumber'].invalid)">
+        <small class="text-warm">Todos los campos son obligatorios.</small>
+      </div>
+      <div class="form-group mt-3">
+        <label for="documentType">Tipo de Documento</label>
+        <select id="documentType" class="form-select" formControlName="documentType">
+          <option value="C">Cédula de Ciudadanía</option>
+          <option value="P">Pasaporte</option>
+        </select>
+        <div
+          *ngIf="form.controls['documentType'].invalid && (form.controls['documentType'].dirty || form.controls['documentType'].touched)">
+          <small class="text-danger">El tipo de documento es obligatorio.</small>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="documentNumber">Número de Documento</label>
+        <input type="text" id="documentNumber" class="form-control" formControlName="documentNumber"
+          (input)="onInputChange()" maxlength="14" />
+        <div
+          *ngIf="form.controls['documentNumber'].invalid && (form.controls['documentNumber'].dirty || form.controls['documentNumber'].touched)">
+          <small class="text-danger">El número de documento debe tener entre 8 y 11 caracteres y sólo debe contener
+            números.</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn mt-3" [ngClass]="{'btn-primary': form.valid, 'btn-disabled': !form.valid}"
+        [disabled]="form.invalid">Buscar</button>
+    </form>
+
+    <div *ngIf="showErrorAlert" class="alert alert-danger mt-3" role="alert">
+      {{ errorMessage }}
+    </div>
+  </div>
+</div>
